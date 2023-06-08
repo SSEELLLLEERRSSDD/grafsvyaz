@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{ 
+
+    static void Main(string[] args)
+    {
+        int count = 5;
+        int[,]matr = new int[count, count];
+
+        matr[1, 0] = 1;
+        matr[0, 1] = 1;
+        matr[2, 3] = 1;
+        matr[2, 3] = 1; 
+        matr[3, 4] = 1;
+        matr[4, 3] = 1;
+
+        Console.WriteLine("Связные компоненты графа");
+        con();
+        Console.ReadKey();
+    }
+    public static void func(int v, int[] visited)
+    {
+        int count = 5;
+        int[,] matr = new int[count, count];
+        visited[v] = 1;
+        Console.Write(v + " ");
+
+        for (int i = 0; i < count; i++)
+            if (matr[v, i] == 1 && visited[i] == 0)
+                func(i, visited);
+    }
+
+    public static void con()
+    {int count = 5;
+        int[] visited = new int[count];
+
+        for (int v = 0; v < count; v++)
+            if (visited[v] == 0)
+            {
+                func(v, visited);
+                Console.WriteLine();
+            }
+    }
+}
